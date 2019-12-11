@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-import { Container, StyledInput, Label } from './styles';
+import { Container, StyledInput, Label, IconWrapper } from './styles';
 
-const Input = ({ type, label, id, value, onFocus, onChange }) => {
+const Input = ({ type, label, id, value, onFocus, onChange, icon }) => {
   const [isFocused, setIsFocused] = useState(false);
 
   const inputIsFilled = Boolean(value);
@@ -29,6 +29,7 @@ const Input = ({ type, label, id, value, onFocus, onChange }) => {
       <Label htmlFor={id} up={inputIsFilled || isFocused}>
         {label}
       </Label>
+      {icon && <IconWrapper>{icon}</IconWrapper>}
     </Container>
   );
 };
@@ -40,6 +41,7 @@ Input.propTypes = {
   value: PropTypes.string,
   onFocus: PropTypes.func,
   onChange: PropTypes.func,
+  icon: PropTypes.node,
 };
 
 Input.defaultProps = {
@@ -47,6 +49,7 @@ Input.defaultProps = {
   value: '',
   onFocus: () => {},
   onChange: () => {},
+  icon: null,
 };
 
 export default Input;

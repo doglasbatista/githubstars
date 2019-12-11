@@ -30,4 +30,11 @@ const Label = styled.label`
     `}
 `;
 
-export { Container, StyledInput, Label };
+const IconWrapper = styled.div`
+  position: absolute;
+  right: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+`;
+
+export { Container, StyledInput, Label, IconWrapper };
