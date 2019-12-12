@@ -24,13 +24,14 @@ const SearchBar = ({ handleSubmit, userData }) => {
       <LogoWrapper>
         <GithubStarsLogo />
       </LogoWrapper>
-      <Form onSubmit={onSubmit}>
+      <Form onSubmit={onSubmit} data-testid="search-bar-form">
         <Input
           label="github username..."
           id="username"
           value={username}
           onChange={updateUsername}
           icon={<SearchIcon />}
+          data-testid="username-input"
         />
         {Object.keys(userData).length !== 0 && (
           <UserAvatar
