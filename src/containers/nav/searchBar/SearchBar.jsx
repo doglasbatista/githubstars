@@ -16,7 +16,7 @@ const SearchBar = ({ handleSubmit, userData }) => {
 
   const onSubmit = event => {
     event.preventDefault();
-    handleSubmit(username);
+    if (username) handleSubmit(username);
   };
 
   return (

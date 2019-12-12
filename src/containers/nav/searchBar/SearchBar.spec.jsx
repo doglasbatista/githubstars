@@ -11,10 +11,18 @@ describe('<SearchBar />', () => {
       handleSubmit = jest.fn();
     });
 
-    it('calls handleSubmit when user submit the form', () => {
+    it('calls the handleSubmit method only when the input has a value', () => {
       const { getByTestId } = render(<SearchBar handleSubmit={handleSubmit} />);
       const formElement = getByTestId('search-bar-form');
+      const usernameInputElement = getByTestId('username-input');
 
+      fireEvent.submit(formElement);
+
+      expect(handleSubmit).toHaveBeenCalledTimes(0);
+
+      fireEvent.change(usernameInputElement, {
+        target: { value: 'getify' },
+      });
       fireEvent.submit(formElement);
 
       expect(handleSubmit).toHaveBeenCalledTimes(1);
