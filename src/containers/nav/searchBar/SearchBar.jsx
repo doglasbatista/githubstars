@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 
 import Input from '../../../components/common/input/Input';
 
@@ -8,17 +9,22 @@ import UserAvatar from '../../../components/common/userAvatar/UserAvatar';
 
 import { Container, LogoWrapper, Form } from './styles';
 
-const SearchBar = () => {
+const SearchBar = ({ handleSubmit }) => {
   const [username, setUsername] = useState('');
 
   const updateUsername = event => setUsername(event.target.value);
+
+  const onSubmit = event => {
+    event.preventDefault();
+    handleSubmit(username);
+  };
 
   return (
     <Container>
       <LogoWrapper>
         <GithubStarsLogo />
       </LogoWrapper>
-      <Form>
+      <Form onSubmit={onSubmit}>
         <Input
           label="github username..."
           id="username"
@@ -35,6 +41,10 @@ const SearchBar = () => {
       </Form>
     </Container>
   );
+};
+
+SearchBar.propTypes = {
+  handleSubmit: PropTypes.func.isRequired,
 };
 
 export default SearchBar;
