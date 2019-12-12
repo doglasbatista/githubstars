@@ -25,6 +25,7 @@ const Input = ({ type, label, id, value, onFocus, onChange, icon }) => {
         onFocus={handleOnFocus}
         onBlur={handleOnBlur}
         onChange={onChange}
+        value={value}
       />
       <Label htmlFor={id} up={inputIsFilled || isFocused}>
         {label}
