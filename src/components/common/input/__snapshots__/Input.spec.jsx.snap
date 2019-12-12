@@ -12,6 +12,7 @@ Object {
           class="sc-bwzfXH ccqDaw"
           id="input-id"
           type="text"
+          value="Input value"
         />
         <label
           class="sc-htpNat gyeJku"
@@ -30,6 +31,7 @@ Object {
         class="sc-bwzfXH ccqDaw"
         id="input-id"
         type="text"
+        value="Input value"
       />
       <label
         class="sc-htpNat gyeJku"
@@ -105,6 +107,7 @@ Object {
           class="sc-bwzfXH ccqDaw"
           id="input-id"
           type="text"
+          value=""
         />
         <label
           class="sc-htpNat jLDUPT"
@@ -123,6 +126,7 @@ Object {
         class="sc-bwzfXH ccqDaw"
         id="input-id"
         type="text"
+        value=""
       />
       <label
         class="sc-htpNat jLDUPT"

@@ -1,9 +1,19 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import { Container, StyledInput, Label, IconWrapper } from './styles';
 
-const Input = ({ type, label, id, value, onFocus, onChange, icon }) => {
+const Input = ({
+  type,
+  label,
+  id,
+  value,
+  onFocus,
+  onChange,
+  icon,
+  ...props
+}) => {
   const [isFocused, setIsFocused] = useState(false);
 
   const inputIsFilled = Boolean(value);
@@ -26,6 +36,7 @@ const Input = ({ type, label, id, value, onFocus, onChange, icon }) => {
         onBlur={handleOnBlur}
         onChange={onChange}
         value={value}
+        {...props}
       />
       <Label htmlFor={id} up={inputIsFilled || isFocused}>
         {label}
