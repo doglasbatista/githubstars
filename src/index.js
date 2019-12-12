@@ -6,10 +6,19 @@ import { ApolloProvider } from '@apollo/react-hooks';
 
 import Routes from './Routes';
 
+import { getAccessToken } from './utils/utils';
+
 import './reset.css';
 
 const apolloClient = new ApolloClient({
   uri: 'https://api.github.com/graphql',
+  request: operation => {
+    operation.setContext({
+      headers: {
+        authorization: `Bearer ${getAccessToken()}`,
+      },
+    });
+  },
 });
 
 ReactDOM.render(
