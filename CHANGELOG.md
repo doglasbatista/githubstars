@@ -4,6 +4,8 @@
 
 ### Features
 
+- [Criar componente para buscar usuário](https://trello.com/c/PzKguzKb/3-criar-componente-para-buscar-usu%C3%A1rio)
+
 ### Bugfixes
 
 ## 0.2.0
