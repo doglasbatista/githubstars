@@ -9,7 +9,7 @@ import UserAvatar from '../../../components/common/userAvatar/UserAvatar';
 
 import { Container, LogoWrapper, Form } from './styles';
 
-const SearchBar = ({ handleSubmit }) => {
+const SearchBar = ({ handleSubmit, userData }) => {
   const [username, setUsername] = useState('');
 
   const updateUsername = event => setUsername(event.target.value);
@@ -32,12 +32,14 @@ const SearchBar = ({ handleSubmit }) => {
           onChange={updateUsername}
           icon={<SearchIcon />}
         />
-        <UserAvatar
-          imageUrl="https://avatarfiles.alphacoders.com/131/131749.png"
-          username="rick sanchez"
-          width="64px"
-          height="64px"
-        />
+        {Object.keys(userData).length !== 0 && (
+          <UserAvatar
+            imageUrl={userData.avatarUrl}
+            username={userData.username}
+            width="64px"
+            height="64px"
+          />
+        )}
       </Form>
     </Container>
   );
@@ -45,6 +47,14 @@ const SearchBar = ({ handleSubmit }) => {
 
 SearchBar.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
+  userData: PropTypes.shape({
+    avatarUrl: PropTypes.string,
+    username: PropTypes.string,
+  }),
+};
+
+SearchBar.defaultProps = {
+  userData: {},
 };
 
 export default SearchBar;

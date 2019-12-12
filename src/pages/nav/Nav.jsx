@@ -18,7 +18,16 @@ const Nav = () => {
 
   return (
     <Container>
-      <SearchBar handleSubmit={searchRepos} />
+      <SearchBar
+        handleSubmit={searchRepos}
+        userData={
+          data &&
+          data.user && {
+            avatarUrl: data.user.avatarUrl,
+            username: data.user.name,
+          }
+        }
+      />
       {called && loading && <span>CARREGANDO...</span>}
       {called && !loading && console.log('data ', data)}
     </Container>
