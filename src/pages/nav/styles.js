@@ -9,7 +9,9 @@ const Container = styled.div`
 const SearchResult = styled.div`
   margin-top: 54px;
   display: grid;
-  grid-template-columns: min-content auto;
+  @media (min-width: 768px) {
+    grid-template-columns: min-content auto;
+  }
 `;
 
 export { Container, SearchResult };
