@@ -9,7 +9,7 @@ const GET_STARRED_REPOS = gql`
       email
       avatarUrl
       location
-      url
+      websiteUrl
       starredRepositories(last: 5) {
         totalCount
         edges {
