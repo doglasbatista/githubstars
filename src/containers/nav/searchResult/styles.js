@@ -5,8 +5,14 @@ const Container = styled.div`
   display: grid;
   grid-template-columns: 100%;
   grid-gap: 24px 0;
+
   @media (min-width: 768px) {
     grid-template-columns: min-content auto;
+
+    > :first-child {
+      margin-top: 32px;
+      max-height: 531px;
+    }
   }
 `;
 

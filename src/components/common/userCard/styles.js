@@ -3,8 +3,7 @@ import styled from 'styled-components';
 import { primaryColor, primaryColorLight, white } from '../../../colors';
 
 const Container = styled.div`
-  max-height: 531px;
-  margin-top: 32px;
+  height: fit-content;
   overflow: hidden;
   background-color: ${primaryColor}
   border-radius: 5px;
