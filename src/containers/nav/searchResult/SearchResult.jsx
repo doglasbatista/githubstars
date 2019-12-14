@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { useQuery } from '@apollo/react-hooks';
 
 import UserCard from '../../../components/common/userCard/UserCard';
+import ReposList from '../../../components/nav/reposList/ReposList';
 
 import { GET_STARRED_REPOS } from './SearchResult.queries';
 
@@ -15,9 +16,14 @@ const SearchResult = ({ username }) => {
 
   if (loading) return <div>CARREGANDO...</div>;
 
+  const {
+    user: { starredRepositories },
+  } = data;
+
   return (
     <Container>
       <UserCard userData={data.user} />
+      <ReposList list={starredRepositories.edges} />
     </Container>
   );
 };
