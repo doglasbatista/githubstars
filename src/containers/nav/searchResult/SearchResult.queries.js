@@ -17,6 +17,7 @@ const GET_STARRED_REPOS = gql`
             id
             name
             description
+            shortDescriptionHTML(limit: 80)
             homepageUrl
             projectsUrl
             resourcePath
