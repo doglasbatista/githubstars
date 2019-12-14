@@ -1,41 +1,23 @@
-import React from 'react';
-import { useLazyQuery } from '@apollo/react-hooks';
+import React, { useState } from 'react';
 
 import SearchBar from '../../containers/nav/searchBar/SearchBar';
-import UserCard from '../../components/common/userCard/UserCard';
+import SearchResult from '../../containers/nav/searchResult/SearchResult';
 
-import { GET_STARRED_REPOS } from './Nav.queries';
-
-import { Container, SearchResult } from './styles';
+import { Container } from './styles';
 
 const Nav = () => {
-  const [loadGreeting, { called, loading, data }] = useLazyQuery(
-    GET_STARRED_REPOS
-  );
+  const [showSearchResult, setShowSearchResult] = useState(false);
+  const [username, setUsername] = useState('');
 
-  const searchRepos = username => {
-    loadGreeting({ variables: { username } });
+  const searchRepos = name => {
+    setUsername(name);
+    setShowSearchResult(true);
   };
 
   return (
     <Container>
-      <SearchBar
-        handleSubmit={searchRepos}
-        userData={
-          data &&
-          data.user && {
-            avatarUrl: data.user.avatarUrl,
-            username: data.user.name,
-          }
-        }
-      />
-      {called && !loading && (
-        <SearchResult>
-          <UserCard userData={data.user} />
-        </SearchResult>
-      )}
-      {called && loading && <span>CARREGANDO...</span>}
-      {called && !loading && console.log('data ', data)}
+      <SearchBar handleSubmit={searchRepos} />
+      {showSearchResult && <SearchResult username={username} />}
     </Container>
   );
 };
