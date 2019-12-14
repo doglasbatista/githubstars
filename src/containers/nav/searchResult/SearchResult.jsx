@@ -1,35 +1,52 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useQuery } from '@apollo/react-hooks';
 
 import UserCard from '../../../components/common/userCard/UserCard';
 import ReposList from '../../../components/nav/reposList/ReposList';
 
-import { GET_STARRED_REPOS } from './SearchResult.queries';
-
 import { Container } from './styles';
 
-const SearchResult = ({ username }) => {
-  const { loading, data /* , error */ } = useQuery(GET_STARRED_REPOS, {
-    variables: { username },
-  });
-
-  if (loading) return <div>CARREGANDO...</div>;
-
-  const {
-    user: { starredRepositories },
-  } = data;
-
+const SearchResult = ({ userData }) => {
   return (
     <Container>
-      <UserCard userData={data.user} />
-      <ReposList list={starredRepositories.edges} />
+      <UserCard userData={userData} />
+      <ReposList list={userData.starredRepositories.edges} />
     </Container>
   );
 };
 
 SearchResult.propTypes = {
-  username: PropTypes.string.isRequired,
+  userData: PropTypes.shape({
+    avatarUrl: PropTypes.string.isRequired,
+    bio: PropTypes.string,
+    email: PropTypes.string,
+    location: PropTypes.string,
+    login: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    websiteUrl: PropTypes.string,
+    organizations: PropTypes.shape({
+      edges: PropTypes.arrayOf(
+        PropTypes.shape({
+          node: PropTypes.shape({
+            name: PropTypes.string,
+          }),
+        })
+      ),
+    }),
+    starredRepositories: PropTypes.shape({
+      edges: PropTypes.arrayOf(
+        PropTypes.shape({
+          node: PropTypes.shape({
+            resourcePath: PropTypes.string.isRequired,
+            shortDescriptionHTML: PropTypes.string.isRequired,
+            stargazers: PropTypes.shape({
+              totalCount: PropTypes.number.isRequired,
+            }).isRequired,
+          }).isRequired,
+        }).isRequired
+      ),
+    }),
+  }).isRequired,
 };
 
 export default SearchResult;
