@@ -11,6 +11,10 @@ const Container = styled.div`
 
 const LogoWrapper = styled.div`
   text-align: center;
+  margin-bottom: 32px;
+  @media (min-width: 768px) {
+    margin-bottom: 0;
+  }
 
   > svg {
     width: 187px;
