@@ -4,9 +4,18 @@ import { transparentize } from 'polished';
 import { white, black, neutralColor } from '../../../colors';
 
 const Container = styled.div`
+  display: grid;
+  grid-template-columns: 70% 30%;
+  grid-gap: 0 4px;
+  align-items: center;
   background-color: ${white};
   box-shadow: 1px 1px 5px ${transparentize(0.85, black)};
-  padding: 27px 32px 34px;
+  padding: 12px 16px;
+  @media (min-width: 768px) {
+    grid-gap: 0;
+    grid-template-columns: 75% 25%;
+    padding: 27px 32px 34px;
+  }
 
   :not(:last-of-type) {
     margin-bottom: 33px;
@@ -37,4 +46,13 @@ const TotalCount = styled.span`
   }
 `;
 
-export { Container, Title, Description, RepoInfo, TotalCount };
+const RepoActions = styled.div`
+  display: flex;
+  justify-content: flex-end;
+
+  button {
+    max-width: 91px;
+  }
+`;
+
+export { Container, Title, Description, RepoInfo, TotalCount, RepoActions };
