@@ -3,12 +3,21 @@ import PropTypes from 'prop-types';
 
 import StarIcon from '../../icons/star/Star';
 
-import { Container, Title, Description, RepoInfo, TotalCount } from './styles';
+import Button from '../../common/button/Button';
+
+import {
+  Container,
+  Title,
+  Description,
+  RepoInfo,
+  TotalCount,
+  RepoActions,
+} from './styles';
 
 const RepoItem = ({
   repoData: {
     resourcePath,
-    description,
+    shortDescriptionHTML,
     stargazers: { totalCount },
   },
 }) => {
@@ -21,12 +30,19 @@ const RepoItem = ({
     <Container>
       <RepoInfo>
         <Title>{title}</Title>
-        <Description>{description}</Description>
+        <Description
+          dangerouslySetInnerHTML={{
+            __html: shortDescriptionHTML,
+          }}
+        />
         <TotalCount>
           <StarIcon />
           {totalCount}
         </TotalCount>
       </RepoInfo>
+      <RepoActions>
+        <Button buttonType="ghost">star</Button>
+      </RepoActions>
     </Container>
   );
 };
@@ -34,7 +50,7 @@ const RepoItem = ({
 RepoItem.propTypes = {
   repoData: PropTypes.shape({
     resourcePath: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
+    shortDescriptionHTML: PropTypes.string.isRequired,
     stargazers: PropTypes.shape({
       totalCount: PropTypes.number.isRequired,
     }).isRequired,

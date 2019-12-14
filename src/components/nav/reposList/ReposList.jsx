@@ -20,7 +20,7 @@ ReposList.propTypes = {
     PropTypes.shape({
       node: PropTypes.shape({
         resourcePath: PropTypes.string.isRequired,
-        description: PropTypes.string.isRequired,
+        shortDescriptionHTML: PropTypes.string.isRequired,
         stargazers: PropTypes.shape({
           totalCount: PropTypes.number.isRequired,
         }).isRequired,
