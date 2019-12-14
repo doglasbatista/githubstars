@@ -17,6 +17,12 @@ const GET_STARRED_REPOS = gql`
             id
             name
             description
+            homepageUrl
+            projectsUrl
+            resourcePath
+            stargazers {
+              totalCount
+            }
           }
         }
       }
