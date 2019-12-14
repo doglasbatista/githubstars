@@ -61,6 +61,7 @@ const UserBio = styled.div`
 
 const InfoList = styled.ul`
   list-style-type: none;
+  margin: 0 8px;
 `;
 
 const InfoItem = styled.li`
