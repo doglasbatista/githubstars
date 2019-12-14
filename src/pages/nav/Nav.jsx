@@ -2,10 +2,11 @@ import React from 'react';
 import { useLazyQuery } from '@apollo/react-hooks';
 
 import SearchBar from '../../containers/nav/searchBar/SearchBar';
+import UserCard from '../../components/common/userCard/UserCard';
 
 import { GET_STARRED_REPOS } from './Nav.queries';
 
-import { Container } from './styles';
+import { Container, SearchResult } from './styles';
 
 const Nav = () => {
   const [loadGreeting, { called, loading, data }] = useLazyQuery(
@@ -28,6 +29,11 @@ const Nav = () => {
           }
         }
       />
+      {called && !loading && (
+        <SearchResult>
+          <UserCard userData={data.user} />
+        </SearchResult>
+      )}
       {called && loading && <span>CARREGANDO...</span>}
       {called && !loading && console.log('data ', data)}
     </Container>

@@ -6,4 +6,12 @@ const Container = styled.div`
   margin: 128px auto 0;
 `;
 
-export { Container }; // eslint-disable-line
+const SearchResult = styled.div`
+  margin-top: 54px;
+  display: grid;
+  @media (min-width: 768px) {
+    grid-template-columns: min-content auto;
+  }
+`;
+
+export { Container, SearchResult };
