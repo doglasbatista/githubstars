@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { primaryColor, primaryColorLight, white } from '../../../colors';
 
 const Container = styled.div`
+  height: fit-content;
   overflow: hidden;
   background-color: ${primaryColor}
   border-radius: 5px;
@@ -45,6 +46,7 @@ const UserDetails = styled.div`
   justify-content: center;
   width: 100%;
   max-width: 100%;
+  height: 100%;
   background-color: ${primaryColorLight};
   text-align: center;
   padding: 16px 8px;
