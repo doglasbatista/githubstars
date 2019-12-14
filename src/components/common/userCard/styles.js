@@ -3,22 +3,32 @@ import styled from 'styled-components';
 import { primaryColor, primaryColorLight, white } from '../../../colors';
 
 const Container = styled.div`
+  overflow: hidden;
   background-color: ${primaryColor}
-  border-radius: 5px 0 0 5px;
+  border-radius: 5px;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 21px 0 0;
+  align-items: stretch;
   color: ${white};
   font-size: 20px;
   text-align: center;
+
+  @media (min-width: 768px) {
+    border-radius: 5px 0 0 5px;
+    padding: 21px 0 0;
+    flex-direction: column;
+  }
 `;
 
 const Img = styled.img`
-  width: 160px;
-  height: 160px;
+  width: 70px;
+  height: 70px;
   border-radius: 50%;
   margin-bottom: 17px;
+
+  @media (min-width: 768px) {
+    width: 160px;
+    height: 160px;
+  }
 `;
 
 const UserName = styled.span`
@@ -30,12 +40,18 @@ const NickName = styled.span`
 `;
 
 const UserDetails = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   width: 100%;
   max-width: 100%;
-  margin-top: 27px;
   background-color: ${primaryColorLight};
   text-align: center;
-  padding: 27px 16px;
+  padding: 16px 8px;
+
+  @media (min-width: 768px) {
+    padding: 27px 16px;
+  }
 `;
 
 const UserBio = styled.div`
@@ -69,10 +85,26 @@ const Link = styled.a`
   display: flex;
   align-items: center;
 
+  :hover {
+    text-decoration: underline;
+  }
+
   > svg {
     min-width: 14px;
     min-height: 14px;
     margin-right: 6px;
+  }
+`;
+
+const UserInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px 12px;
+  font-size: 14px;
+
+  @media (min-width: 768px) {
+    font-size: 16px;
   }
 `;
 
@@ -86,4 +118,5 @@ export {
   InfoList,
   InfoItem,
   Link,
+  UserInfo,
 };

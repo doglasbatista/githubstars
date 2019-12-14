@@ -15,6 +15,7 @@ import {
   InfoList,
   InfoItem,
   Link,
+  UserInfo,
 } from './styles';
 
 const UserCard = ({
@@ -22,9 +23,11 @@ const UserCard = ({
 }) => {
   return (
     <Container>
-      <Img src={avatarUrl} alt={name} />
-      <UserName>{name}</UserName>
-      <NickName>{login}</NickName>
+      <UserInfo>
+        <Img src={avatarUrl} alt={name} />
+        <UserName>{name}</UserName>
+        <NickName>{login}</NickName>
+      </UserInfo>
       <UserDetails>
         {bio && <UserBio>{bio}</UserBio>}
         <InfoList>
