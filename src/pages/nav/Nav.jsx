@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useLazyQuery, useMutation } from '@apollo/react-hooks';
 
 import SearchBar from '../../containers/nav/searchBar/SearchBar';
@@ -12,9 +12,12 @@ import { ADD_STAR, REMOVE_STAR } from './Nav.mutations';
 import { Container } from './styles';
 
 const Nav = () => {
-  const [getRepos, { called, loading, data, refetch }] = useLazyQuery(
-    GET_STARRED_REPOS
-  );
+  const [
+    getRepos,
+    { called, loading, data, refetch, fetchMore },
+  ] = useLazyQuery(GET_STARRED_REPOS, {
+    notifyOnNetworkStatusChange: true,
+  });
   const [
     addStar,
     { loading: addStarLoading /* , error: addStarError */ },
@@ -35,6 +38,41 @@ const Nav = () => {
     await refetch();
   };
 
+  const fetchMoreData = useCallback(() => {
+    const {
+      user: {
+        starredRepositories: {
+          pageInfo: { startCursor },
+        },
+      },
+    } = data;
+
+    fetchMore({
+      variables: { beforeId: startCursor },
+      updateQuery: (prev, { fetchMoreResult }) => {
+        if (!fetchMoreResult) return prev;
+
+        return {
+          ...prev,
+          user: {
+            ...prev.user,
+            starredRepositories: {
+              ...prev.user.starredRepositories,
+              edges: [
+                ...prev.user.starredRepositories.edges,
+                ...fetchMoreResult.user.starredRepositories.edges,
+              ],
+              pageInfo: {
+                ...prev.user.starredRepositories.pageInfo,
+                ...fetchMoreResult.user.starredRepositories.pageInfo,
+              },
+            },
+          },
+        };
+      },
+    });
+  }, [data, fetchMore]);
+
   const isLoading = (called && loading) || removeStarLoading || addStarLoading;
 
   return (
@@ -54,6 +92,18 @@ const Nav = () => {
         <SearchResult userData={data.user} addStar={addStarHandler} />
       )}
       {called && !loading && !data && <UserNotFound />}
+      <button
+        type="button"
+        onClick={fetchMoreData}
+        style={{
+          width: '100px',
+          height: '40px',
+          maxHeight: '40px',
+          margin: '5rem auto',
+        }}
+      >
+        Load More
+      </button>
     </Container>
   );
 };
