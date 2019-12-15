@@ -1,10 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router } from 'react-router-dom';
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from '@apollo/react-hooks';
 
-import Routes from './Routes';
+import Nav from './pages/nav/Nav';
 
 import { getAccessToken } from './utils/utils';
 
@@ -22,10 +21,8 @@ const apolloClient = new ApolloClient({
 });
 
 ReactDOM.render(
-  <Router>
-    <ApolloProvider client={apolloClient}>
-      <Routes />
-    </ApolloProvider>
-  </Router>,
+  <ApolloProvider client={apolloClient}>
+    <Nav />
+  </ApolloProvider>,
   document.getElementById('root')
 );
