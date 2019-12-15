@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import GithubStarsLogo from '../../../components/icons/githubStarsLogo/GithubStarsLogo';
 import Input from '../../../components/common/input/Input';
@@ -7,6 +7,14 @@ import Button from '../../../components/common/button/Button';
 import { Container, LogoWrapper, TokenInfo, Form } from './styles';
 
 const SaveUserToken = () => {
+  const [personalToken, setPersonalToken] = useState('');
+
+  const handleSubmit = event => {
+    event.preventDefault();
+  };
+
+  const handlePersonalToken = event => setPersonalToken(event.target.value);
+
   return (
     <Container>
       <LogoWrapper>
@@ -18,8 +26,14 @@ const SaveUserToken = () => {
         quis volutpat erat hendrerit non.
       </TokenInfo>
 
-      <Form>
-        <Input label="github personal token..." variant="outlined" />
+      <Form onSubmit={handleSubmit}>
+        <Input
+          id="personal-token"
+          value={personalToken}
+          onChange={handlePersonalToken}
+          label="github personal token..."
+          variant="outlined"
+        />
         <Button>Save</Button>
       </Form>
     </Container>
