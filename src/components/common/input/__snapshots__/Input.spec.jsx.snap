@@ -9,13 +9,13 @@ Object {
         class="sc-bdVaJa EXKLM"
       >
         <input
-          class="sc-bwzfXH ccqDaw"
+          class="sc-bwzfXH jHosHd"
           id="input-id"
           type="text"
           value="Input value"
         />
         <label
-          class="sc-htpNat gyeJku"
+          class="sc-htpNat kzpar"
           for="input-id"
         >
           testings the input
@@ -28,13 +28,13 @@ Object {
       class="sc-bdVaJa EXKLM"
     >
       <input
-        class="sc-bwzfXH ccqDaw"
+        class="sc-bwzfXH jHosHd"
         id="input-id"
         type="text"
         value="Input value"
       />
       <label
-        class="sc-htpNat gyeJku"
+        class="sc-htpNat kzpar"
         for="input-id"
       >
         testings the input
@@ -104,13 +104,13 @@ Object {
         class="sc-bdVaJa EXKLM"
       >
         <input
-          class="sc-bwzfXH ccqDaw"
+          class="sc-bwzfXH jHosHd"
           id="input-id"
           type="text"
           value=""
         />
         <label
-          class="sc-htpNat jLDUPT"
+          class="sc-htpNat blwkjv"
           for="input-id"
         >
           testings the input
@@ -123,13 +123,13 @@ Object {
       class="sc-bdVaJa EXKLM"
     >
       <input
-        class="sc-bwzfXH ccqDaw"
+        class="sc-bwzfXH jHosHd"
         id="input-id"
         type="text"
         value=""
       />
       <label
-        class="sc-htpNat jLDUPT"
+        class="sc-htpNat blwkjv"
         for="input-id"
       >
         testings the input
