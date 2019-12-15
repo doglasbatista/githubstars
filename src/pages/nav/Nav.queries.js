@@ -1,7 +1,7 @@
 import gql from 'graphql-tag';
 
 const GET_STARRED_REPOS = gql`
-  query getStarredRepos($username: String!) {
+  query getStarredRepos($username: String!, $beforeId: String) {
     user(login: $username) {
       login
       name
@@ -10,8 +10,14 @@ const GET_STARRED_REPOS = gql`
       avatarUrl
       location
       websiteUrl
-      starredRepositories(last: 5) {
+      starredRepositories(last: 3, before: $beforeId) {
         totalCount
+        pageInfo {
+          hasPreviousPage
+          hasNextPage
+          startCursor
+          endCursor
+        }
         edges {
           node {
             id
