@@ -14,7 +14,7 @@ import { Container } from './styles';
 const Nav = () => {
   const [
     getRepos,
-    { called, loading, data, refetch, fetchMore },
+    { called, loading, networkStatus, data, refetch, fetchMore },
   ] = useLazyQuery(GET_STARRED_REPOS, {
     notifyOnNetworkStatusChange: true,
   });
@@ -37,6 +37,9 @@ const Nav = () => {
     else await addStar({ variables: { repoId } });
     await refetch();
   };
+
+  const hasNextPage =
+    data?.user?.starredRepositories?.pageInfo?.hasPreviousPage;
 
   const fetchMoreData = useCallback(() => {
     const {
@@ -75,6 +78,9 @@ const Nav = () => {
 
   const isLoading = (called && loading) || removeStarLoading || addStarLoading;
 
+  const showSearchResult =
+    called && (!loading || (loading && networkStatus === 3)) && data;
+
   return (
     <Container>
       <SearchBar
@@ -88,22 +94,15 @@ const Nav = () => {
         }
       />
       {isLoading && <Loading />}
-      {called && !loading && data && (
-        <SearchResult userData={data.user} addStar={addStarHandler} />
+      {showSearchResult && (
+        <SearchResult
+          userData={data.user}
+          addStar={addStarHandler}
+          fetchMoreData={fetchMoreData}
+          hasNextPage={hasNextPage}
+        />
       )}
       {called && !loading && !data && <UserNotFound />}
-      <button
-        type="button"
-        onClick={fetchMoreData}
-        style={{
-          width: '100px',
-          height: '40px',
-          maxHeight: '40px',
-          margin: '5rem auto',
-        }}
-      >
-        Load More
-      </button>
     </Container>
   );
 };
