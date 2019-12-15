@@ -20,8 +20,8 @@ const SearchBar = ({ handleSubmit, userData, firstSearch }) => {
   };
 
   return (
-    <Container>
-      <LogoWrapper>
+    <Container firstSearch={firstSearch}>
+      <LogoWrapper firstSearch={firstSearch}>
         <GithubStarsLogo />
       </LogoWrapper>
       <Form onSubmit={onSubmit} data-testid="search-bar-form">
