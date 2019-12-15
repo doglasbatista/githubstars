@@ -1,6 +1,7 @@
 import styled from 'styled-components';
+import { lighten } from 'polished';
 
-import { neutralColor } from '../../../colors';
+import { neutralColor, primaryColorDarken } from '../../../colors';
 
 const Container = styled.div``;
 
@@ -19,6 +20,7 @@ const TokenInfo = styled.p`
   text-align: center;
   font-size: 16px;
   margin-bottom: 32px;
+  letter-spacing: 0.2px;
 `;
 
 const Form = styled.form`
@@ -44,4 +46,16 @@ const Form = styled.form`
   }
 `;
 
-export { Container, LogoWrapper, TokenInfo, Form };
+const Link = styled.a`
+  cursor: pointer;
+  font-weight: 600;
+  color: ${primaryColorDarken};
+  transition: 0.2s ease-in;
+
+  :hover {
+    transition: 0.2s ease-in;
+    color: ${lighten(0.1, primaryColorDarken)};
+  }
+`;
+
+export { Container, LogoWrapper, TokenInfo, Form, Link };

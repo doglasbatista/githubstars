@@ -7,7 +7,7 @@ import Button from '../../../components/common/button/Button';
 
 import { setAccessToken } from '../../../utils/utils';
 
-import { Container, LogoWrapper, TokenInfo, Form } from './styles';
+import { Container, LogoWrapper, TokenInfo, Form, Link } from './styles';
 
 const SaveUserToken = ({ callback }) => {
   const [personalToken, setPersonalToken] = useState('');
@@ -30,8 +30,14 @@ const SaveUserToken = ({ callback }) => {
       </LogoWrapper>
 
       <TokenInfo>
-        Mussum Ipsum, cacilds vidis litro abertis. Praesent malesuada urna nisi,
-        quis volutpat erat hendrerit non.
+        We need you let us know your{' '}
+        <Link
+          href="https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/"
+          target="_blank"
+        >
+          personal-token
+        </Link>
+        . To access the Github API
       </TokenInfo>
 
       <Form onSubmit={handleSubmit} data-testid="user-token-form">
