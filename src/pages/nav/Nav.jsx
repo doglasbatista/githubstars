@@ -4,6 +4,7 @@ import { useLazyQuery, useMutation } from '@apollo/react-hooks';
 import SearchBar from '../../containers/nav/searchBar/SearchBar';
 import SearchResult from '../../containers/nav/searchResult/SearchResult';
 import Loading from '../../components/common/loading/Loading';
+import UserNotFound from '../../components/nav/userNotFound/UserNotFound';
 
 import { GET_STARRED_REPOS } from './Nav.queries';
 import { ADD_STAR, REMOVE_STAR } from './Nav.mutations';
@@ -52,6 +53,7 @@ const Nav = () => {
       {called && !loading && data && (
         <SearchResult userData={data.user} addStar={addStarHandler} />
       )}
+      {called && !loading && !data && <UserNotFound />}
     </Container>
   );
 };
