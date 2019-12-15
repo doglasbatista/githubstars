@@ -6,11 +6,11 @@ import ReposList from '../../../components/nav/reposList/ReposList';
 
 import { Container } from './styles';
 
-const SearchResult = ({ userData }) => {
+const SearchResult = ({ userData, addStar }) => {
   return (
     <Container>
       <UserCard userData={userData} />
-      <ReposList list={userData.starredRepositories.edges} />
+      <ReposList list={userData.starredRepositories.edges} addStar={addStar} />
     </Container>
   );
 };
@@ -47,6 +47,7 @@ SearchResult.propTypes = {
       ),
     }),
   }).isRequired,
+  addStar: PropTypes.func.isRequired,
 };
 
 export default SearchResult;

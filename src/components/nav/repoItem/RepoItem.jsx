@@ -19,7 +19,10 @@ const RepoItem = ({
     resourcePath,
     shortDescriptionHTML,
     stargazers: { totalCount },
+    id,
+    viewerHasStarred,
   },
+  addStar,
 }) => {
   const title = resourcePath
     .substr(1)
@@ -41,7 +44,12 @@ const RepoItem = ({
         </TotalCount>
       </RepoInfo>
       <RepoActions>
-        <Button buttonType="ghost">star</Button>
+        <Button
+          buttonType={viewerHasStarred ? 'filled' : 'ghost'}
+          onClick={() => addStar({ repoId: id, hasStarred: viewerHasStarred })}
+        >
+          {viewerHasStarred ? 'unstar' : 'star'}
+        </Button>
       </RepoActions>
     </Container>
   );
@@ -54,7 +62,10 @@ RepoItem.propTypes = {
     stargazers: PropTypes.shape({
       totalCount: PropTypes.number.isRequired,
     }).isRequired,
+    id: PropTypes.string.isRequired,
+    viewerHasStarred: PropTypes.bool.isRequired,
   }).isRequired,
+  addStar: PropTypes.func.isRequired,
 };
 
 export default RepoItem;
