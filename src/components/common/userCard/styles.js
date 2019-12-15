@@ -5,10 +5,10 @@ import { primaryColor, primaryColorLight, white } from '../../../colors';
 const Container = styled.div`
   height: fit-content;
   overflow: hidden;
-  background-color: ${primaryColor}
+  background-color: ${primaryColor};
   border-radius: 5px;
-  display: flex;
-  align-items: stretch;
+  display: grid;
+  grid-template-columns: 35% 65%;
   color: ${white};
   font-size: 20px;
   text-align: center;
@@ -16,6 +16,7 @@ const Container = styled.div`
   @media (min-width: 768px) {
     border-radius: 5px 0 0 5px;
     padding: 21px 0 0;
+    display: flex;
     flex-direction: column;
   }
 `;
