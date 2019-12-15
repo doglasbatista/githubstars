@@ -30,9 +30,13 @@ const StyledInput = styled.input`
     if (variant === 'outlined') {
       return css`
         border: 1px solid ${lighten(0.1, black)};
-        height: 91px;
+        height: 61px;
         border-radius: 5px;
         padding-left: 34px;
+
+        @media (min-width: 768px) {
+          height: 91px;
+        }
       `;
     }
 
