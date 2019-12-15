@@ -84,6 +84,7 @@ const Nav = () => {
   return (
     <Container>
       <SearchBar
+        firstSearch={called}
         handleSubmit={searchRepos}
         userData={
           data &&
