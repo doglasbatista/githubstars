@@ -21,6 +21,7 @@ ReposList.propTypes = {
   list: PropTypes.arrayOf(
     PropTypes.shape({
       node: PropTypes.shape({
+        id: PropTypes.string.isRequired,
         resourcePath: PropTypes.string.isRequired,
         shortDescriptionHTML: PropTypes.string.isRequired,
         stargazers: PropTypes.shape({
