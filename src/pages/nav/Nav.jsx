@@ -3,11 +3,15 @@ import { useLazyQuery, useMutation } from '@apollo/react-hooks';
 
 import SearchBar from '../../containers/nav/searchBar/SearchBar';
 import SearchResult from '../../containers/nav/searchResult/SearchResult';
+import SaveUserToken from '../../containers/nav/saveUserToken/SaveUserToken';
+
 import Loading from '../../components/common/loading/Loading';
 import UserNotFound from '../../components/nav/userNotFound/UserNotFound';
 
 import { GET_STARRED_REPOS } from './Nav.queries';
 import { ADD_STAR, REMOVE_STAR } from './Nav.mutations';
+
+import { getAccessToken } from '../../utils/utils';
 
 import { Container } from './styles';
 
@@ -83,17 +87,20 @@ const Nav = () => {
 
   return (
     <Container>
-      <SearchBar
-        firstSearch={called}
-        handleSubmit={searchRepos}
-        userData={
-          data &&
-          data.user && {
-            avatarUrl: data.user.avatarUrl,
-            username: data.user.name,
+      {getAccessToken() && (
+        <SearchBar
+          firstSearch={called}
+          handleSubmit={searchRepos}
+          userData={
+            data &&
+            data.user && {
+              avatarUrl: data.user.avatarUrl,
+              username: data.user.name,
+            }
           }
-        }
-      />
+        />
+      )}
+      {!getAccessToken() && <SaveUserToken />}
       {isLoading && <Loading />}
       {showSearchResult && (
         <SearchResult
