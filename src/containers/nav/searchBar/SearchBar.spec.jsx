@@ -12,7 +12,9 @@ describe('<SearchBar />', () => {
     });
 
     it('calls the handleSubmit method only when the input has a value', () => {
-      const { getByTestId } = render(<SearchBar handleSubmit={handleSubmit} />);
+      const { getByTestId } = render(
+        <SearchBar handleSubmit={handleSubmit} firstSearch />
+      );
       const formElement = getByTestId('search-bar-form');
       const usernameInputElement = getByTestId('username-input');
 
@@ -29,7 +31,9 @@ describe('<SearchBar />', () => {
     });
 
     it('calls handleSubmit with input value', () => {
-      const { getByTestId } = render(<SearchBar handleSubmit={handleSubmit} />);
+      const { getByTestId } = render(
+        <SearchBar handleSubmit={handleSubmit} firstSearch />
+      );
       const formElement = getByTestId('search-bar-form');
       const usernameInputElement = getByTestId('username-input');
 
