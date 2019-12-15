@@ -21,6 +21,7 @@ const GET_STARRED_REPOS = gql`
             homepageUrl
             projectsUrl
             resourcePath
+            viewerHasStarred
             stargazers {
               totalCount
             }

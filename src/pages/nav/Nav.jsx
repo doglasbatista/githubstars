@@ -1,21 +1,39 @@
 import React from 'react';
-import { useLazyQuery } from '@apollo/react-hooks';
+import { useLazyQuery, useMutation } from '@apollo/react-hooks';
 
 import SearchBar from '../../containers/nav/searchBar/SearchBar';
 import SearchResult from '../../containers/nav/searchResult/SearchResult';
 
 import { GET_STARRED_REPOS } from './Nav.queries';
+import { ADD_STAR, REMOVE_STAR } from './Nav.mutations';
 
 import { Container } from './styles';
 
 const Nav = () => {
-  const [loadGreeting, { called, loading, data }] = useLazyQuery(
+  const [getRepos, { called, loading, data, refetch }] = useLazyQuery(
     GET_STARRED_REPOS
   );
+  const [
+    addStar,
+    { loading: addStarLoading /* , error: addStarError */ },
+  ] = useMutation(ADD_STAR);
+
+  const [
+    removeStar,
+    { loading: removeStarLoading /* , error: removeStarError */ },
+  ] = useMutation(REMOVE_STAR);
 
   const searchRepos = username => {
-    loadGreeting({ variables: { username } });
+    getRepos({ variables: { username } });
   };
+
+  const addStarHandler = async ({ repoId, hasStarred }) => {
+    if (hasStarred) await removeStar({ variables: { repoId } });
+    else await addStar({ variables: { repoId } });
+    await refetch();
+  };
+
+  const isLoading = (called && loading) || removeStarLoading || addStarLoading;
 
   return (
     <Container>
@@ -29,8 +47,10 @@ const Nav = () => {
           }
         }
       />
-      {called && loading && <span>CARREGANDO...</span>}
-      {called && !loading && <SearchResult userData={data.user} />}
+      {isLoading && <span>CARREGANDO...</span>}
+      {called && !loading && data && (
+        <SearchResult userData={data.user} addStar={addStarHandler} />
+      )}
     </Container>
   );
 };

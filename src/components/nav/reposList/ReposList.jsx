@@ -5,11 +5,11 @@ import RepoItem from '../repoItem/RepoItem';
 
 import { Container } from './styles';
 
-const ReposList = ({ list }) => {
+const ReposList = ({ list, addStar }) => {
   return (
     <Container>
       {list.map(repo => (
-        <RepoItem key={repo.node.id} repoData={repo.node} />
+        <RepoItem key={repo.node.id} repoData={repo.node} addStar={addStar} />
       ))}
     </Container>
   );
@@ -27,6 +27,7 @@ ReposList.propTypes = {
       }).isRequired,
     })
   ).isRequired,
+  addStar: PropTypes.func.isRequired,
 };
 
 export default ReposList;
