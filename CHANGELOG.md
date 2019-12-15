@@ -10,6 +10,7 @@
 - [Permitir que o usuário "estrele" os repos listados do usuário buscado](https://trello.com/c/ndxAB3As/6-permitir-que-o-usu%C3%A1rio-estrele-os-repos-listados-do-usu%C3%A1rio-buscado)
 - [Criar componente de loading](https://trello.com/c/v4xS3Ioy/10-criar-componente-de-loading)
 - [Criar componente de usuário não encontrado](https://trello.com/c/C2Dim8AO/7-criar-componente-de-usu%C3%A1rio-n%C3%A3o-encontrado)
+- [Adicionar paginação](https://trello.com/c/dfQ5VOUm/15-adicionar-pagina%C3%A7%C3%A3o)
 
 ### Bugfixes
 

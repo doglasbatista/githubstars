@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useLazyQuery, useMutation } from '@apollo/react-hooks';
 
 import SearchBar from '../../containers/nav/searchBar/SearchBar';
@@ -12,9 +12,12 @@ import { ADD_STAR, REMOVE_STAR } from './Nav.mutations';
 import { Container } from './styles';
 
 const Nav = () => {
-  const [getRepos, { called, loading, data, refetch }] = useLazyQuery(
-    GET_STARRED_REPOS
-  );
+  const [
+    getRepos,
+    { called, loading, networkStatus, data, refetch, fetchMore },
+  ] = useLazyQuery(GET_STARRED_REPOS, {
+    notifyOnNetworkStatusChange: true,
+  });
   const [
     addStar,
     { loading: addStarLoading /* , error: addStarError */ },
@@ -35,7 +38,48 @@ const Nav = () => {
     await refetch();
   };
 
+  const hasNextPage =
+    data?.user?.starredRepositories?.pageInfo?.hasPreviousPage;
+
+  const fetchMoreData = useCallback(() => {
+    const {
+      user: {
+        starredRepositories: {
+          pageInfo: { startCursor },
+        },
+      },
+    } = data;
+
+    fetchMore({
+      variables: { beforeId: startCursor },
+      updateQuery: (prev, { fetchMoreResult }) => {
+        if (!fetchMoreResult) return prev;
+
+        return {
+          ...prev,
+          user: {
+            ...prev.user,
+            starredRepositories: {
+              ...prev.user.starredRepositories,
+              edges: [
+                ...prev.user.starredRepositories.edges,
+                ...fetchMoreResult.user.starredRepositories.edges,
+              ],
+              pageInfo: {
+                ...prev.user.starredRepositories.pageInfo,
+                ...fetchMoreResult.user.starredRepositories.pageInfo,
+              },
+            },
+          },
+        };
+      },
+    });
+  }, [data, fetchMore]);
+
   const isLoading = (called && loading) || removeStarLoading || addStarLoading;
+
+  const showSearchResult =
+    called && (!loading || (loading && networkStatus === 3)) && data;
 
   return (
     <Container>
@@ -50,8 +94,13 @@ const Nav = () => {
         }
       />
       {isLoading && <Loading />}
-      {called && !loading && data && (
-        <SearchResult userData={data.user} addStar={addStarHandler} />
+      {showSearchResult && (
+        <SearchResult
+          userData={data.user}
+          addStar={addStarHandler}
+          fetchMoreData={fetchMoreData}
+          hasNextPage={hasNextPage}
+        />
       )}
       {called && !loading && !data && <UserNotFound />}
     </Container>
