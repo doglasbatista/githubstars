@@ -9,7 +9,7 @@ import UserAvatar from '../../../components/common/userAvatar/UserAvatar';
 
 import { Container, LogoWrapper, Form } from './styles';
 
-const SearchBar = ({ handleSubmit, userData }) => {
+const SearchBar = ({ handleSubmit, userData, firstSearch }) => {
   const [username, setUsername] = useState('');
 
   const updateUsername = event => setUsername(event.target.value);
@@ -20,8 +20,8 @@ const SearchBar = ({ handleSubmit, userData }) => {
   };
 
   return (
-    <Container>
-      <LogoWrapper>
+    <Container firstSearch={firstSearch}>
+      <LogoWrapper firstSearch={firstSearch}>
         <GithubStarsLogo />
       </LogoWrapper>
       <Form onSubmit={onSubmit} data-testid="search-bar-form">
@@ -32,6 +32,7 @@ const SearchBar = ({ handleSubmit, userData }) => {
           onChange={updateUsername}
           icon={<SearchIcon />}
           data-testid="username-input"
+          variant={firstSearch ? 'standard' : 'outlined'}
         />
         {Object.keys(userData).length !== 0 && (
           <UserAvatar
@@ -52,6 +53,7 @@ SearchBar.propTypes = {
     avatarUrl: PropTypes.string,
     username: PropTypes.string,
   }),
+  firstSearch: PropTypes.bool.isRequired,
 };
 
 SearchBar.defaultProps = {

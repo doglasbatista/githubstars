@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 const Container = styled.div`
   @media (min-width: 768px) {
@@ -7,13 +7,32 @@ const Container = styled.div`
     align-items: center;
     grid-gap: 0 45px;
   }
+
+  ${({ firstSearch }) =>
+    !firstSearch &&
+    css`
+      @media (min-width: 768px) {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+      }
+    `}
 `;
 
 const LogoWrapper = styled.div`
   text-align: center;
   margin-bottom: 32px;
+  flex: 0 1 64px;
+
   @media (min-width: 768px) {
-    margin-bottom: 0;
+    ${({ firstSearch }) =>
+      !firstSearch
+        ? css`
+            margin-bottom: 54px;
+          `
+        : css`
+            margin-bottom: 0;
+          `}
   }
 
   > svg {
@@ -23,10 +42,17 @@ const LogoWrapper = styled.div`
 `;
 
 const Form = styled.form`
-  display: grid;
-  grid-template-columns: auto 64px;
+  display: flex;
   align-items: center;
-  grid-gap: 0 16px;
+
+  *:first-child {
+    flex: 1 1 0;
+  }
+
+  *:last-child:not(:first-child) {
+    margin-left: 16px;
+  }
+
   @media (min-width: 768px) {
     grid-gap: 0 32px;
   }

@@ -12,6 +12,7 @@ const Input = ({
   onFocus,
   onChange,
   icon,
+  variant,
   ...props
 }) => {
   const [isFocused, setIsFocused] = useState(false);
@@ -36,9 +37,10 @@ const Input = ({
         onBlur={handleOnBlur}
         onChange={onChange}
         value={value}
+        variant={variant}
         {...props}
       />
-      <Label htmlFor={id} up={inputIsFilled || isFocused}>
+      <Label htmlFor={id} up={inputIsFilled || isFocused} variant={variant}>
         {label}
       </Label>
       {icon && <IconWrapper>{icon}</IconWrapper>}
@@ -54,6 +56,7 @@ Input.propTypes = {
   onFocus: PropTypes.func,
   onChange: PropTypes.func,
   icon: PropTypes.node,
+  variant: PropTypes.oneOf(['standard', 'outlined']),
 };
 
 Input.defaultProps = {
@@ -62,6 +65,7 @@ Input.defaultProps = {
   onFocus: () => {},
   onChange: () => {},
   icon: null,
+  variant: 'standard',
 };
 
 export default Input;
