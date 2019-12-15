@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import { useLazyQuery, useMutation } from '@apollo/react-hooks';
 
 import SearchBar from '../../containers/nav/searchBar/SearchBar';
@@ -16,6 +16,9 @@ import { getAccessToken } from '../../utils/utils';
 import { Container } from './styles';
 
 const Nav = () => {
+  const [userHasAccessToken, setUserHasAccessToken] = useState(
+    getAccessToken()
+  );
   const [
     getRepos,
     { called, loading, networkStatus, data, refetch, fetchMore },
@@ -87,7 +90,7 @@ const Nav = () => {
 
   return (
     <Container>
-      {getAccessToken() && (
+      {userHasAccessToken && (
         <SearchBar
           firstSearch={called}
           handleSubmit={searchRepos}
@@ -100,7 +103,9 @@ const Nav = () => {
           }
         />
       )}
-      {!getAccessToken() && <SaveUserToken />}
+      {!userHasAccessToken && (
+        <SaveUserToken callback={() => setUserHasAccessToken(true)} />
+      )}
       {isLoading && <Loading />}
       {showSearchResult && (
         <SearchResult
