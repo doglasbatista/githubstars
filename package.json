@@ -1,6 +1,6 @@
 {
   "name": "githubstars",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "private": true,
   "dependencies": {
     "@apollo/react-hooks": "^3.1.3",
@@ -9,9 +9,11 @@
     "@testing-library/user-event": "^7.1.2",
     "apollo-boost": "^0.4.4",
     "graphql": "^14.5.8",
+    "graphql-tag": "^2.10.1",
+    "polished": "^3.4.2",
+    "prop-types": "^15.7.2",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
-    "react-router-dom": "^5.1.2",
     "react-scripts": "3.3.0",
     "styled-components": "^4.4.1"
   },
