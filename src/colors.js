@@ -3,6 +3,7 @@ const primaryColorLight = '#5352b2';
 const primaryColorDarken = '#5152B7';
 
 const neutralColor = '#4F4F4F';
+const neutralColorLight = '#BABABA';
 
 const white = '#fff';
 
@@ -13,6 +14,7 @@ export {
   primaryColorLight,
   primaryColorDarken,
   neutralColor,
+  neutralColorLight,
   white,
   black,
 };
