@@ -10,7 +10,7 @@ const GET_STARRED_REPOS = gql`
       avatarUrl
       location
       websiteUrl
-      starredRepositories(last: 3, before: $beforeId) {
+      starredRepositories(last: 20, before: $beforeId) {
         totalCount
         pageInfo {
           hasPreviousPage
