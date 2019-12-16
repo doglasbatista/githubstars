@@ -1,5 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import { useLazyQuery, useMutation } from '@apollo/react-hooks';
+import { useToasts } from 'react-toast-notifications';
 
 import SearchBar from '../../containers/nav/searchBar/SearchBar';
 import SearchResult from '../../containers/nav/searchResult/SearchResult';
@@ -11,17 +12,18 @@ import UserNotFound from '../../components/nav/userNotFound/UserNotFound';
 import { GET_STARRED_REPOS } from './Nav.queries';
 import { ADD_STAR, REMOVE_STAR } from './Nav.mutations';
 
-import { getAccessToken } from '../../utils/utils';
+import { getAccessToken, destroyAccessToken } from '../../utils/utils';
 
 import { Container } from './styles';
 
 const Nav = () => {
+  const { addToast } = useToasts();
   const [userHasAccessToken, setUserHasAccessToken] = useState(
     getAccessToken()
   );
   const [
     getRepos,
-    { called, loading, networkStatus, data, refetch, fetchMore },
+    { error, called, loading, networkStatus, data, refetch, fetchMore },
   ] = useLazyQuery(GET_STARRED_REPOS, {
     notifyOnNetworkStatusChange: true,
   });
@@ -39,9 +41,21 @@ const Nav = () => {
     getRepos({ variables: { username } });
   };
 
+  const addNotification = ({ appearance, text } = { appearance: 'success' }) =>
+    addToast(text, {
+      appearance,
+      placement: 'bottom-center',
+      autoDismiss: true,
+    });
+
   const addStarHandler = async ({ repoId, hasStarred }) => {
-    if (hasStarred) await removeStar({ variables: { repoId } });
-    else await addStar({ variables: { repoId } });
+    if (hasStarred) {
+      await removeStar({ variables: { repoId } });
+      addNotification({ text: 'Repo unstarred with success!' });
+    } else {
+      await addStar({ variables: { repoId } });
+      addNotification({ text: 'Repo starred with success!' });
+    }
     await refetch();
   };
 
@@ -85,8 +99,23 @@ const Nav = () => {
 
   const isLoading = (called && loading) || removeStarLoading || addStarLoading;
 
+  const treatUnauthorized = () => {
+    addNotification({
+      text: 'Unauthorized. Logging out...',
+      appearance: 'error',
+    });
+    setUserHasAccessToken(false);
+    destroyAccessToken();
+  };
+
+  if (userHasAccessToken && error && error.message.includes('401')) {
+    treatUnauthorized();
+  }
+
   const showSearchResult =
-    called && (!loading || (loading && networkStatus === 3)) && data;
+    called &&
+    (!loading || (loading && networkStatus === 3) || networkStatus === 4) &&
+    data;
 
   return (
     <Container>
@@ -115,7 +144,7 @@ const Nav = () => {
           hasNextPage={hasNextPage}
         />
       )}
-      {called && !loading && !data && <UserNotFound />}
+      {userHasAccessToken && called && !loading && !data && <UserNotFound />}
     </Container>
   );
 };

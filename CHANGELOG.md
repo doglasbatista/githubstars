@@ -10,6 +10,15 @@
 
 ### Features
 
+- [Tratar usuário não autorizado](https://trello.com/c/Cbffa87R/18-tratar-usu%C3%A1rio-n%C3%A3o-autorizado)
+- [Adicionar alerta de repositório estrelado](https://trello.com/c/s8QdJoWo/14-adicionar-alerta-de-reposit%C3%B3rio-estrelado)
+
+### Bugfixes
+
+## 0.3.0
+
+### Features
+
 - [Criar componente para buscar usuário](https://trello.com/c/PzKguzKb/3-criar-componente-para-buscar-usu%C3%A1rio)
 - [Criar card com as informações do usuário](https://trello.com/c/AaJIJVmH/4-criar-card-com-as-informa%C3%A7%C3%B5es-do-usu%C3%A1rio)
 - [Criar listagem de repositório estrelados](https://trello.com/c/Tbl85oId/5-criar-listagem-de-reposit%C3%B3rio-estrelados)
