@@ -4,6 +4,12 @@
 
 ### Features
 
+### Bugfixes
+
+## 1.1.0
+
+### Features
+
 - [Utilizar sessionStorage para salve personal-token](https://trello.com/c/Gr5fiDvP/22-utilizar-sessionstorage-para-salve-personal-token)
 
 ### Bugfixes
