@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 
 import ButtonWrapper from './styles';
 
-const Button = ({ children, buttonType, onClick }) => {
+const Button = ({ children, buttonType, onClick, type }) => {
   return (
-    <ButtonWrapper type="button" buttonType={buttonType} onClick={onClick}>
+    <ButtonWrapper type={type} buttonType={buttonType} onClick={onClick}>
       {children}
     </ButtonWrapper>
   );
@@ -18,11 +18,13 @@ Button.propTypes = {
   ]).isRequired,
   buttonType: PropTypes.oneOf(['filled', 'ghost']),
   onClick: PropTypes.func,
+  type: PropTypes.oneOf(['button', 'submit']),
 };
 
 Button.defaultProps = {
   buttonType: 'filled',
   onClick: () => {},
+  type: 'button',
 };
 
 export default Button;
