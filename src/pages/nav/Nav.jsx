@@ -125,9 +125,9 @@ const Nav = () => {
           handleSubmit={searchRepos}
           userData={
             data &&
-            data.user && {
-              avatarUrl: data.user.avatarUrl,
-              username: data.user.name,
+            data.viewer && {
+              avatarUrl: data.viewer.avatarUrl,
+              username: data.viewer.login,
             }
           }
         />

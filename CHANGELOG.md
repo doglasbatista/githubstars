@@ -7,6 +7,7 @@
 ### Bugfixes
 
 - [Botão para salvar personal-token não está funcionando](https://trello.com/c/xwA21mvm/19-bot%C3%A3o-para-salvar-personal-token-n%C3%A3o-est%C3%A1-funcionando)
+- [Foto ao lado do formulario de pesquisa deve mostrar foto do usuário logado, não do usuário buscado](https://trello.com/c/Ef8cO7p2/9-foto-ao-lado-do-formulario-de-pesquisa-deve-mostrar-foto-do-usu%C3%A1rio-logado-n%C3%A3o-do-usu%C3%A1rio-buscado)
 
 ## 0.3.0
 
