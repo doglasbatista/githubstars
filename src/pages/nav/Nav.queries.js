@@ -2,6 +2,10 @@ import gql from 'graphql-tag';
 
 const GET_STARRED_REPOS = gql`
   query getStarredRepos($username: String!, $beforeId: String) {
+    viewer {
+      login
+      avatarUrl
+    }
     user(login: $username) {
       login
       name
