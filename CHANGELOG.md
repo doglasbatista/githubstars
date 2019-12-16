@@ -4,6 +4,8 @@
 
 ### Features
 
+- [Criação do README do projeto](https://trello.com/c/zG7HZHml/20-cria%C3%A7%C3%A3o-do-readme-do-projeto)
+
 ### Bugfixes
 
 - [Icone do input outlined está fora do spec](https://trello.com/c/LBB8CtiD/17-icone-do-input-outlined-est%C3%A1-fora-do-spec)
