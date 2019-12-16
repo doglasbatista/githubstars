@@ -6,6 +6,17 @@
 
 ### Bugfixes
 
+## 1.0.0
+
+### Features
+
+- [Criação do README do projeto](https://trello.com/c/zG7HZHml/20-cria%C3%A7%C3%A3o-do-readme-do-projeto)
+- [Alterar título da página e trocar favicon do projeto](https://trello.com/c/cdbI26UG/21-alterar-t%C3%ADtulo-da-p%C3%A1gina-e-trocar-favicon-do-projeto)
+
+### Bugfixes
+
+- [Icone do input outlined está fora do spec](https://trello.com/c/LBB8CtiD/17-icone-do-input-outlined-est%C3%A1-fora-do-spec)
+
 ## 0.4.1
 
 ### Features
