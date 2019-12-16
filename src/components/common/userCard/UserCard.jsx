@@ -25,7 +25,7 @@ const UserCard = ({
     <Container>
       <UserInfo>
         <Img src={avatarUrl} alt={name} />
-        <UserName>{name}</UserName>
+        {name && <UserName>{name}</UserName>}
         <NickName>{login}</NickName>
       </UserInfo>
       <UserDetails>
@@ -64,7 +64,7 @@ UserCard.propTypes = {
     email: PropTypes.string,
     location: PropTypes.string,
     login: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
+    name: PropTypes.string,
     websiteUrl: PropTypes.string,
     organizations: PropTypes.shape({
       edges: PropTypes.arrayOf(
