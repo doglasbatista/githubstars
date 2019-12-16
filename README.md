@@ -1,68 +1,67 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# GithubStars
 
-## Available Scripts
+No Github você pode seguir repositórios de projetos que você achou interessantes e acompanhar o desenvolvimento no seu feed de notícias.
 
-In the project directory, you can run:
+Estrelar um repositório torna mais fácil encontrar novamente mais tarde. Você pode ver todos os repositórios que você estrelou indo para sua página de estrelas.
 
-### `yarn start`
+O que não tem no Github, com menos do que 2 cliques, é saber quais são todos os repositórios que um determinado usuário estrelou.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Você deve fazer um app com o seguinte funcionamento:
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+1. Permita que o usuário busque por ~~nome ou~~ apelido de outro usuário no Github. Match tem de ser exato do ~~nome ou~~ apelido
+2. Liste os repos estrelados do usuário buscado
+3. Exiba na lateral da listagem o nickname, avatar, bio, localização, email e URL do usuário buscado
+4. Permita que o usuário estrele os repos listados do usuário buscado
 
-### `yarn test`
+### A app também deve:
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. Ser uma app SPA
+2. Permita que o usuário faça o fluxo de autenticação via "[personal token](https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line)" do github para conseguir estrelar os repositórios
+3. Usar a API GraphQL do [Github](https://developer.github.com/v4/)
+4. Seguir [essa spec](https://www.figma.com/file/DTacdAvhVLkaZUCU0XotKz2n/Github-stars) de interface
 
-### `yarn build`
+## Tecnologias utilizadas
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+> Esse projeto foi inicializado com o [Create React App](https://github.com/facebook/create-react-app).
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+- [@apollo/react-hooks](https://www.apollographql.com/docs/) Camada de comunicação entre o client e o back-end
+- [styled-components](https://www.styled-components.com/) Biblioteca para utilização de CSS-in-JS
+- [polished](https://polished.js.org/) Utilização de helpers de estilo para CSS-in-JS
+- [react-toast-notifications](https://jossmac.github.io/react-toast-notifications/) Criação de alertas Toast
+- [ESlint](https://eslint.org/) Analise estatica de estilo de código, foram utilizadas as regras do [eslint-config-airbnb](https://www.npmjs.com/package/eslint-config-airbnb)
+- [prettier](https://prettier.io/) Formatação automatica do código baseado nas regras do ESlint
+- [husky](https://github.com/typicode/husky) Criação de git hooks 🐶
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Execução
 
-### `yarn eject`
+Em um ambiente `node ^12.8.0` basta instalar as dependências do projeto:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```bash
+# Utilizando NPM
+npm install
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+# Utilizadno yarn
+yarn
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+e executar o servidor de desenvolvimento:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```bash
+# Utilizando NPM
+npm start
 
-## Learn More
+# Utilizadno yarn
+yarn start
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Instruções para testes
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Para executar o suite de testes, basta executar o comando:
 
-### Code Splitting
+```bash
+# Utilizando NPM
+npm start
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+# Utilizadno yarn
+yarn start
+```
