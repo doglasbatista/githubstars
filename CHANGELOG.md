@@ -5,6 +5,7 @@
 ### Features
 
 - [Tratar usuário não autorizado](https://trello.com/c/Cbffa87R/18-tratar-usu%C3%A1rio-n%C3%A3o-autorizado)
+- [Adicionar alerta de repositório estrelado](https://trello.com/c/s8QdJoWo/14-adicionar-alerta-de-reposit%C3%B3rio-estrelado)
 
 ### Bugfixes
 
