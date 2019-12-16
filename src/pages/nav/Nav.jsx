@@ -11,7 +11,7 @@ import UserNotFound from '../../components/nav/userNotFound/UserNotFound';
 import { GET_STARRED_REPOS } from './Nav.queries';
 import { ADD_STAR, REMOVE_STAR } from './Nav.mutations';
 
-import { getAccessToken } from '../../utils/utils';
+import { getAccessToken, destroyAccessToken } from '../../utils/utils';
 
 import { Container } from './styles';
 
@@ -21,7 +21,7 @@ const Nav = () => {
   );
   const [
     getRepos,
-    { called, loading, networkStatus, data, refetch, fetchMore },
+    { error, called, loading, networkStatus, data, refetch, fetchMore },
   ] = useLazyQuery(GET_STARRED_REPOS, {
     notifyOnNetworkStatusChange: true,
   });
@@ -85,6 +85,15 @@ const Nav = () => {
 
   const isLoading = (called && loading) || removeStarLoading || addStarLoading;
 
+  const treatUnauthorized = () => {
+    setUserHasAccessToken(false);
+    destroyAccessToken();
+  };
+
+  if (userHasAccessToken && error && error.message.includes('401')) {
+    treatUnauthorized();
+  }
+
   const showSearchResult =
     called && (!loading || (loading && networkStatus === 3)) && data;
 
@@ -115,7 +124,7 @@ const Nav = () => {
           hasNextPage={hasNextPage}
         />
       )}
-      {called && !loading && !data && <UserNotFound />}
+      {userHasAccessToken && called && !loading && !data && <UserNotFound />}
     </Container>
   );
 };
