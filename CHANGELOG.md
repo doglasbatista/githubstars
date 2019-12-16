@@ -6,6 +6,8 @@
 
 ### Bugfixes
 
+- [Icone do input outlined está fora do spec](https://trello.com/c/LBB8CtiD/17-icone-do-input-outlined-est%C3%A1-fora-do-spec)
+
 ## 0.4.1
 
 ### Features

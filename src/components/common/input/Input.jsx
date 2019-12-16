@@ -43,7 +43,7 @@ const Input = ({
       <Label htmlFor={id} up={inputIsFilled || isFocused} variant={variant}>
         {label}
       </Label>
-      {icon && <IconWrapper>{icon}</IconWrapper>}
+      {icon && <IconWrapper variant={variant}>{icon}</IconWrapper>}
     </Container>
   );
 };
