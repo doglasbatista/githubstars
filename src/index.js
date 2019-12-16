@@ -1,9 +1,12 @@
 import React from 'react';
+import { ToastProvider } from 'react-toast-notifications';
 import ReactDOM from 'react-dom';
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from '@apollo/react-hooks';
 
 import Nav from './pages/nav/Nav';
+
+import ToastAlert from './components/common/toastAlert/ToastAlert';
 
 import { getAccessToken } from './utils/utils';
 
@@ -22,7 +25,9 @@ const apolloClient = new ApolloClient({
 
 ReactDOM.render(
   <ApolloProvider client={apolloClient}>
-    <Nav />
+    <ToastProvider components={{ Toast: ToastAlert }} placement="bottom-left">
+      <Nav />
+    </ToastProvider>
   </ApolloProvider>,
   document.getElementById('root')
 );

@@ -1,5 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import { useLazyQuery, useMutation } from '@apollo/react-hooks';
+import { useToasts } from 'react-toast-notifications';
 
 import SearchBar from '../../containers/nav/searchBar/SearchBar';
 import SearchResult from '../../containers/nav/searchResult/SearchResult';
@@ -16,6 +17,7 @@ import { getAccessToken, destroyAccessToken } from '../../utils/utils';
 import { Container } from './styles';
 
 const Nav = () => {
+  const { addToast } = useToasts();
   const [userHasAccessToken, setUserHasAccessToken] = useState(
     getAccessToken()
   );
@@ -86,6 +88,11 @@ const Nav = () => {
   const isLoading = (called && loading) || removeStarLoading || addStarLoading;
 
   const treatUnauthorized = () => {
+    addToast('Unauthorized. Logging out...', {
+      appearance: 'error',
+      placement: 'bottom-center',
+      autoDismiss: true,
+    });
     setUserHasAccessToken(false);
     destroyAccessToken();
   };
