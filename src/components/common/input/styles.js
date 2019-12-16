@@ -86,8 +86,8 @@ const Label = styled.label`
 
 const IconWrapper = styled.div`
   position: absolute;
-  right: 6px;
   top: 50%;
+  right: ${({ variant }) => (variant === 'outlined' ? '32px' : '6px')}
   transform: translateY(-50%);
 `;
 
