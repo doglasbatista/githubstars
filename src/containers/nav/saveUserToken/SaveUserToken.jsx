@@ -49,7 +49,7 @@ const SaveUserToken = ({ callback }) => {
           label="github personal token..."
           variant="outlined"
         />
-        <Button>Save</Button>
+        <Button type="submit">Save</Button>
       </Form>
     </Container>
   );

@@ -27,7 +27,7 @@ SearchResult.propTypes = {
     email: PropTypes.string,
     location: PropTypes.string,
     login: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
+    name: PropTypes.string,
     websiteUrl: PropTypes.string,
     organizations: PropTypes.shape({
       edges: PropTypes.arrayOf(

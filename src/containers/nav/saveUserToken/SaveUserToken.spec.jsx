@@ -22,6 +22,22 @@ describe('<SaveUserToken />', () => {
       expect(utils.setAccessToken).toHaveBeenCalledWith(personalToken);
     });
 
+    it('calls callback prop and setAccessToken when user click on "Save"', () => {
+      const callbackFunction = jest.fn();
+      utils.setAccessToken = jest.fn();
+      const { getByText, getByTestId } = render(
+        <SaveUserToken callback={callbackFunction} />
+      );
+      const inputElement = getByTestId('token-input');
+      const saveButton = getByText('Save');
+
+      fireEvent.change(inputElement, { target: { value: personalToken } });
+      fireEvent.click(saveButton);
+
+      expect(callbackFunction).toHaveBeenCalledTimes(1);
+      expect(utils.setAccessToken).toHaveBeenCalledTimes(1);
+    });
+
     it('calls callback prop when user submit the form', () => {
       const callbackFunction = jest.fn();
       const { getByTestId } = render(
