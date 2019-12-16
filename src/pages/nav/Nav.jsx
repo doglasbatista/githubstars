@@ -41,9 +41,21 @@ const Nav = () => {
     getRepos({ variables: { username } });
   };
 
+  const addNotification = ({ appearance, text } = { appearance: 'success' }) =>
+    addToast(text, {
+      appearance,
+      placement: 'bottom-center',
+      autoDismiss: true,
+    });
+
   const addStarHandler = async ({ repoId, hasStarred }) => {
-    if (hasStarred) await removeStar({ variables: { repoId } });
-    else await addStar({ variables: { repoId } });
+    if (hasStarred) {
+      await removeStar({ variables: { repoId } });
+      addNotification({ text: 'Repo unstarred with success!' });
+    } else {
+      await addStar({ variables: { repoId } });
+      addNotification({ text: 'Repo starred with success!' });
+    }
     await refetch();
   };
 
@@ -88,10 +100,9 @@ const Nav = () => {
   const isLoading = (called && loading) || removeStarLoading || addStarLoading;
 
   const treatUnauthorized = () => {
-    addToast('Unauthorized. Logging out...', {
+    addNotification({
+      text: 'Unauthorized. Logging out...',
       appearance: 'error',
-      placement: 'bottom-center',
-      autoDismiss: true,
     });
     setUserHasAccessToken(false);
     destroyAccessToken();
@@ -102,7 +113,9 @@ const Nav = () => {
   }
 
   const showSearchResult =
-    called && (!loading || (loading && networkStatus === 3)) && data;
+    called &&
+    (!loading || (loading && networkStatus === 3) || networkStatus === 4) &&
+    data;
 
   return (
     <Container>
