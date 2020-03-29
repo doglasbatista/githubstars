@@ -34,7 +34,7 @@ const ModalTitle = styled.h1`
 
 const ButtonWrapper = styled.div`
   display: flex;
-  margin-top: 24px;
+  margin-top: 16px;
   justify-content: center;
 
   button {
@@ -51,4 +51,11 @@ const ButtonWrapper = styled.div`
   }
 `;
 
-export { Overlay, ModalWrapper, ModalTitle, ButtonWrapper };
+const ModalInfo = styled.p`
+  text-align: center;
+  font-size: 16px;
+  color: ${neutralColor};
+  margin-top: 8px;
+`;
+
+export { Overlay, ModalWrapper, ModalTitle, ButtonWrapper, ModalInfo };
