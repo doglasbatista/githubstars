@@ -13,7 +13,11 @@ describe('<SearchBar />', () => {
 
     it('calls the handleSubmit method only when the input has a value', () => {
       const { getByTestId } = render(
-        <SearchBar handleSubmit={handleSubmit} firstSearch />
+        <SearchBar
+          handleSubmit={handleSubmit}
+          firstSearch
+          handleUserLogout={() => {}}
+        />
       );
       const formElement = getByTestId('search-bar-form');
       const usernameInputElement = getByTestId('username-input');
@@ -32,7 +36,11 @@ describe('<SearchBar />', () => {
 
     it('calls handleSubmit with input value', () => {
       const { getByTestId } = render(
-        <SearchBar handleSubmit={handleSubmit} firstSearch />
+        <SearchBar
+          handleSubmit={handleSubmit}
+          firstSearch
+          handleUserLogout={() => {}}
+        />
       );
       const formElement = getByTestId('search-bar-form');
       const usernameInputElement = getByTestId('username-input');
@@ -43,6 +51,24 @@ describe('<SearchBar />', () => {
       fireEvent.submit(formElement);
 
       expect(handleSubmit).toHaveBeenCalledWith('getify');
+    });
+  });
+
+  describe('logout button', () => {
+    it('shows the logout modal when user click on the logout button', () => {
+      const { getByTestId } = render(
+        <SearchBar
+          handleSubmit={() => {}}
+          firstSearch
+          handleUserLogout={() => {}}
+        />
+      );
+      const logoutButton = getByTestId('logout-button');
+
+      fireEvent.click(logoutButton);
+
+      // const logoutModal = getByTestId('logout-modal');
+      // expect(logoutModal).toBeTruthy();
     });
   });
 });
