@@ -7,11 +7,15 @@ import Button from '../../../components/common/button/Button';
 import SearchIcon from '../../../components/icons/search/Search';
 import GithubStarsLogo from '../../../components/icons/githubStarsLogo/GithubStarsLogo';
 import UserAvatar from '../../../components/common/userAvatar/UserAvatar';
+import LogoutModal from '../../../components/nav/logoutModal/LogoutModal';
+
+// import { destroyAccessToken } from '../../../utils/utils';
 
 import { Container, LogoWrapper, Form, LogoutWrapper } from './styles';
 
 const SearchBar = ({ handleSubmit, userData, firstSearch }) => {
   const [username, setUsername] = useState('');
+  const [logoutModalVisibility, setLogoutModalVisibility] = useState(true);
 
   const updateUsername = event => setUsername(event.target.value);
 
@@ -20,10 +24,17 @@ const SearchBar = ({ handleSubmit, userData, firstSearch }) => {
     if (username) handleSubmit(username);
   };
 
+  const handleLogout = () => {
+    setLogoutModalVisibility(true);
+  };
+
   return (
     <Container firstSearch={firstSearch}>
+      {logoutModalVisibility && <LogoutModal />}
       <LogoutWrapper>
-        <Button buttonType="ghost">Logout</Button>
+        <Button onClick={handleLogout} buttonType="ghost">
+          Logout
+        </Button>
       </LogoutWrapper>
       <LogoWrapper firstSearch={firstSearch}>
         <GithubStarsLogo />
