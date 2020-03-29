@@ -2,9 +2,9 @@
 
 Web client to list all the repositories that a particular user has starred in.
 
-## Tecnologias utilizadas
+## Technologies used
 
-> Esse projeto foi inicializado com o [Create React App](https://github.com/facebook/create-react-app).
+> This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 - [@apollo/react-hooks](https://www.apollographql.com/docs/) A communication layer that seamlessly connects your client application to your back-end
 - [styled-components](https://www.styled-components.com/) Library to use CSS-in-JS
