@@ -4,6 +4,12 @@
 
 ### Features
 
+### Bugfixes
+
+## 1.3.0
+
+### Features
+
 - [Traduzir o readme do projeto](https://trello.com/c/ANpunFYF/24-traduzir-o-readme-do-projeto)
 
 ### Bugfixes
