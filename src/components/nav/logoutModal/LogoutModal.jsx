@@ -21,8 +21,11 @@ const LogoutModal = ({ closeModal, confirmLogout }) => {
   };
 
   return (
-    <Overlay onClick={handleCloseModal}>
-      <ModalWrapper onClick={event => event.stopPropagation()}>
+    <Overlay onClick={handleCloseModal} data-testid="modal-overlay">
+      <ModalWrapper
+        onClick={event => event.stopPropagation()}
+        data-testid="modal-wrapper"
+      >
         <ModalTitle>Are you sure you want to Logout?</ModalTitle>
         <ModalInfo>
           Mussum Ipsum, cacilds vidis litro abertis. Paisis, filhis, espiritis
@@ -30,10 +33,18 @@ const LogoutModal = ({ closeModal, confirmLogout }) => {
           bota uma pinga aí cumpadi!
         </ModalInfo>
         <ButtonWrapper>
-          <Button onClick={handleCloseModal} buttonType="ghost">
+          <Button
+            onClick={handleCloseModal}
+            buttonType="ghost"
+            data-testid="cancel-button"
+          >
             Cancel
           </Button>
-          <Button onClick={handleConfirmLogout} buttonType="filled">
+          <Button
+            onClick={handleConfirmLogout}
+            buttonType="filled"
+            data-testid="confirm-button"
+          >
             Logout
           </Button>
         </ButtonWrapper>
