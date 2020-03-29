@@ -2,6 +2,8 @@
 
 ## Next Release
 
+- [Adicionar opção de logout](https://trello.com/c/LJRxKK5w/23-adicionar-op%C3%A7%C3%A3o-de-logout)
+
 ### Features
 
 ### Bugfixes
