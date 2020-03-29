@@ -42,10 +42,18 @@ const SearchBar = ({
   return (
     <Container firstSearch={firstSearch}>
       {logoutModalVisibility && (
-        <LogoutModal closeModal={cancelLogout} confirmLogout={confirmLogout} />
+        <LogoutModal
+          closeModal={cancelLogout}
+          confirmLogout={confirmLogout}
+          data-testid="logout-modal"
+        />
       )}
       <LogoutWrapper>
-        <Button onClick={handleLogout} buttonType="ghost">
+        <Button
+          onClick={handleLogout}
+          buttonType="ghost"
+          data-testid="logout-button"
+        >
           Logout
         </Button>
       </LogoutWrapper>

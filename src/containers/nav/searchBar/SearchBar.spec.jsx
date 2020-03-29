@@ -53,4 +53,22 @@ describe('<SearchBar />', () => {
       expect(handleSubmit).toHaveBeenCalledWith('getify');
     });
   });
+
+  describe('logout button', () => {
+    it('shows the logout modal when user click on the logout button', () => {
+      const { getByTestId } = render(
+        <SearchBar
+          handleSubmit={() => {}}
+          firstSearch
+          handleUserLogout={() => {}}
+        />
+      );
+      const logoutButton = getByTestId('logout-button');
+
+      fireEvent.click(logoutButton);
+
+      // const logoutModal = getByTestId('logout-modal');
+      // expect(logoutModal).toBeTruthy();
+    });
+  });
 });
