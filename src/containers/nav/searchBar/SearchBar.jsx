@@ -9,13 +9,16 @@ import GithubStarsLogo from '../../../components/icons/githubStarsLogo/GithubSta
 import UserAvatar from '../../../components/common/userAvatar/UserAvatar';
 import LogoutModal from '../../../components/nav/logoutModal/LogoutModal';
 
-// import { destroyAccessToken } from '../../../utils/utils';
-
 import { Container, LogoWrapper, Form, LogoutWrapper } from './styles';
 
-const SearchBar = ({ handleSubmit, userData, firstSearch }) => {
+const SearchBar = ({
+  handleSubmit,
+  userData,
+  firstSearch,
+  handleUserLogout,
+}) => {
   const [username, setUsername] = useState('');
-  const [logoutModalVisibility, setLogoutModalVisibility] = useState(true);
+  const [logoutModalVisibility, setLogoutModalVisibility] = useState(false);
 
   const updateUsername = event => setUsername(event.target.value);
 
@@ -28,9 +31,19 @@ const SearchBar = ({ handleSubmit, userData, firstSearch }) => {
     setLogoutModalVisibility(true);
   };
 
+  const cancelLogout = () => {
+    setLogoutModalVisibility(false);
+  };
+
+  const confirmLogout = () => {
+    handleUserLogout();
+  };
+
   return (
     <Container firstSearch={firstSearch}>
-      {logoutModalVisibility && <LogoutModal />}
+      {logoutModalVisibility && (
+        <LogoutModal closeModal={cancelLogout} confirmLogout={confirmLogout} />
+      )}
       <LogoutWrapper>
         <Button onClick={handleLogout} buttonType="ghost">
           Logout
@@ -69,6 +82,7 @@ SearchBar.propTypes = {
     username: PropTypes.string,
   }),
   firstSearch: PropTypes.bool.isRequired,
+  handleUserLogout: PropTypes.func.isRequired,
 };
 
 SearchBar.defaultProps = {
