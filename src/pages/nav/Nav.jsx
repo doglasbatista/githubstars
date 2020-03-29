@@ -99,13 +99,25 @@ const Nav = () => {
 
   const isLoading = (called && loading) || removeStarLoading || addStarLoading;
 
+  const logoutUser = () => {
+    setUserHasAccessToken(false);
+    destroyAccessToken();
+  };
+
+  const handleUserLogout = () => {
+    addNotification({
+      text: 'You need to be logged in to log out!',
+      appearance: 'success',
+    });
+    logoutUser();
+  };
+
   const treatUnauthorized = () => {
     addNotification({
       text: 'Unauthorized. Logging out...',
       appearance: 'error',
     });
-    setUserHasAccessToken(false);
-    destroyAccessToken();
+    logoutUser();
   };
 
   if (userHasAccessToken && error && error.message.includes('401')) {
@@ -121,6 +133,7 @@ const Nav = () => {
     <Container>
       {userHasAccessToken && (
         <SearchBar
+          handleUserLogout={handleUserLogout}
           firstSearch={called}
           handleSubmit={searchRepos}
           userData={

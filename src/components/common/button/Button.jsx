@@ -3,9 +3,14 @@ import PropTypes from 'prop-types';
 
 import ButtonWrapper from './styles';
 
-const Button = ({ children, buttonType, onClick, type }) => {
+const Button = ({ children, buttonType, onClick, type, ...props }) => {
   return (
-    <ButtonWrapper type={type} buttonType={buttonType} onClick={onClick}>
+    <ButtonWrapper
+      type={type}
+      buttonType={buttonType}
+      onClick={onClick}
+      {...props} // eslint-disable-line
+    >
       {children}
     </ButtonWrapper>
   );

@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 const Container = styled.div`
   @media (min-width: 768px) {
     display: grid;
-    grid-template-columns: 187px auto;
+    grid-template-columns: 100%;
     align-items: center;
     grid-gap: 0 45px;
   }
@@ -58,4 +58,14 @@ const Form = styled.form`
   }
 `;
 
-export { Container, LogoWrapper, Form };
+const LogoutWrapper = styled.div`
+  margin-bottom: 60px;
+  display: flex;
+  justify-content: flex-end;
+
+  button {
+    width: 90px;
+  }
+`;
+
+export { Container, LogoWrapper, Form, LogoutWrapper };
