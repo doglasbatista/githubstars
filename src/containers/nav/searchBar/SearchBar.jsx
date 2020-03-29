@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import Input from '../../../components/common/input/Input';
+import Button from '../../../components/common/button/Button';
 
 import SearchIcon from '../../../components/icons/search/Search';
 import GithubStarsLogo from '../../../components/icons/githubStarsLogo/GithubStarsLogo';
 import UserAvatar from '../../../components/common/userAvatar/UserAvatar';
 
-import { Container, LogoWrapper, Form } from './styles';
+import { Container, LogoWrapper, Form, LogoutWrapper } from './styles';
 
 const SearchBar = ({ handleSubmit, userData, firstSearch }) => {
   const [username, setUsername] = useState('');
@@ -21,6 +22,9 @@ const SearchBar = ({ handleSubmit, userData, firstSearch }) => {
 
   return (
     <Container firstSearch={firstSearch}>
+      <LogoutWrapper>
+        <Button buttonType="ghost">Logout</Button>
+      </LogoutWrapper>
       <LogoWrapper firstSearch={firstSearch}>
         <GithubStarsLogo />
       </LogoWrapper>
